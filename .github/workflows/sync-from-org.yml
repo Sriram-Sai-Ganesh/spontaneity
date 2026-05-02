@@ -1,42 +1,65 @@
-# .github/workflows/sync-from-org.yml
 name: Sync from team-05
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 * * * *"
 
 permissions:
   contents: write
 
+concurrency:
+  group: sync-from-org
+  cancel-in-progress: false
+
 jobs:
   sync:
+    name: Mirror upstream master
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout personal repo
+      - name: Checkout deployment repo
         uses: actions/checkout@v4
         with:
-          repository: Sriram-Sai-Ganesh/spontaneity
           ref: main
           fetch-depth: 0
-          token: ${{ secrets.ORG_REPO_SYNC_TOKEN }}
 
       - name: Configure git identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Add org repo as upstream
+      - name: Clone upstream master
+        env:
+          SYNC_TOKEN: ${{ secrets.ORG_REPO_SYNC_TOKEN }}
         run: |
-          git remote add upstream https://x-access-token:${{ secrets.ORG_REPO_SYNC_TOKEN }}@github.com/cs423sp26-homeworks/team-05.git
-          git fetch upstream master
+          if [ -z "${SYNC_TOKEN}" ]; then
+            echo "::error::Set the ORG_REPO_SYNC_TOKEN repository secret with read access to cs423sp26-homeworks/team-05."
+            exit 1
+          fi
 
-      - name: Merge team-05 master into spontaneity main
-        run: |
-          git checkout main
-          git merge upstream/master --no-edit --allow-unrelated-histories
+          git clone \
+            --depth 1 \
+            --branch master \
+            "https://x-access-token:${SYNC_TOKEN}@github.com/cs423sp26-homeworks/team-05.git" \
+            "${RUNNER_TEMP}/team-05"
 
-      - name: Push to spontaneity main
+      - name: Mirror upstream files
         run: |
+          rsync -a --delete \
+            --exclude ".git/" \
+            --exclude ".github/" \
+            "${RUNNER_TEMP}/team-05/" \
+            ./
+
+      - name: Commit and push changes
+        run: |
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No upstream changes to sync."
+            exit 0
+          fi
+
+          git commit -m "Sync from cs423sp26-homeworks/team-05"
           git push origin main
