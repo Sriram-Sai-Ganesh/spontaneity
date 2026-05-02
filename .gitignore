@@ -25,7 +25,6 @@ Thumbs.db
 CLAUDE.local.md
 node_modules
 convex/_generated/*
-pnpm-lock.yaml
 
 # Test artifacts
 playwright-report/

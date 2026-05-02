@@ -4,6 +4,7 @@
   "author": "Ali Madooei",
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@10.30.2",
   "scripts": {
     "dev": "concurrently --names backend,frontend -c blue,green \"pnpm run dev:backend\" \"pnpm run dev:frontend\"",
     "dev:backend": "npx convex dev",
@@ -79,7 +80,7 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
-    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/coverage-v8": "4.0.18",
     "@vitest/ui": "4.0.18",
     "concurrently": "^9.2.1",
     "convex-test": "^0.0.41",
@@ -93,6 +94,6 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
-    "vitest": "^4.0.18"
+    "vitest": "4.0.18"
   }
 }
