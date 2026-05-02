@@ -11,6 +11,6 @@ Project-level documents for planning, process, and decision-making. These are li
 ### To connect to our Convex backend:
 
 1. Update your `.env.local` file with the following line:
-   `VITE_CONVEX_URL=https://hallowed-minnow-79.convex.cloud`
+   `VITE_CONVEX_URL=https://kindly-cuttlefish-473.convex.cloud`
 
 2. Run `pnpm run dev` to start the development server.

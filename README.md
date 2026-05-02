@@ -66,7 +66,7 @@ npx convex dev
 
 ```bash
 npx convex env set OPENROUTER_API_KEY <your_openrouter_key>
-npx convex env set VITE_CONVEX_URL https://hallowed-minnow-79.convex.cloud
+npx convex env set VITE_CONVEX_URL https://kindly-cuttlefish-473.convex.cloud
 ```
 
 4. Run the app (frontend + backend concurrently):
