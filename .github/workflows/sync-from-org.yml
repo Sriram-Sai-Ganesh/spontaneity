@@ -1,10 +1,10 @@
 # .github/workflows/sync-from-org.yml
-name: Sync from org repo
+name: Sync from team-05
 
 on:
-  schedule:
-    - cron: "0 */1 * * *" # every 1 hour
   workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
 
 permissions:
   contents: write
@@ -17,6 +17,8 @@ jobs:
       - name: Checkout personal repo
         uses: actions/checkout@v4
         with:
+          repository: Sriram-Sai-Ganesh/spontaneity
+          ref: main
           fetch-depth: 0
           token: ${{ secrets.ORG_REPO_SYNC_TOKEN }}
 
@@ -28,13 +30,13 @@ jobs:
       - name: Add org repo as upstream
         run: |
           git remote add upstream https://x-access-token:${{ secrets.ORG_REPO_SYNC_TOKEN }}@github.com/cs423sp26-homeworks/team-05.git
-          git fetch upstream
+          git fetch upstream master
 
-      - name: Merge upstream changes
+      - name: Merge team-05 master into spontaneity main
         run: |
-          git checkout master
-          git merge upstream/master --no-edit
+          git checkout main
+          git merge upstream/master --no-edit --allow-unrelated-histories
 
-      - name: Push changes to personal repo
+      - name: Push to spontaneity main
         run: |
           git push origin main
