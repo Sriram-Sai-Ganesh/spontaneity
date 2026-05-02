@@ -33,15 +33,19 @@ jobs:
         env:
           SYNC_TOKEN: ${{ secrets.ORG_REPO_SYNC_TOKEN }}
         run: |
-          if [ -z "${SYNC_TOKEN}" ]; then
+          CLEAN_TOKEN="$(printf '%s' "${SYNC_TOKEN}" | tr -d '\r\n')"
+
+          if [ -z "${CLEAN_TOKEN}" ]; then
             echo "::error::Set the ORG_REPO_SYNC_TOKEN repository secret with read access to cs423sp26-homeworks/team-05."
             exit 1
           fi
 
+          echo "::add-mask::${CLEAN_TOKEN}"
+
           git clone \
             --depth 1 \
             --branch master \
-            "https://x-access-token:${SYNC_TOKEN}@github.com/cs423sp26-homeworks/team-05.git" \
+            "https://x-access-token:${CLEAN_TOKEN}@github.com/cs423sp26-homeworks/team-05.git" \
             "${RUNNER_TEMP}/team-05"
 
       - name: Mirror upstream files
