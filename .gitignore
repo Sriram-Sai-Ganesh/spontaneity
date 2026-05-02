@@ -1,0 +1,36 @@
+# Environment variables
+.env
+.env.*
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ignore built distribution assets
+dist/
+
+# OS files
+Thumbs.db
+
+# Claude Code local settings
+.claude/settings.local.json
+CLAUDE.local.md
+node_modules
+convex/_generated/*
+pnpm-lock.yaml
+
+# Test artifacts
+playwright-report/
+test-results/
+playwright/.auth/
+test_output.txt
+test_results.txt
+test_results_verbose.txt

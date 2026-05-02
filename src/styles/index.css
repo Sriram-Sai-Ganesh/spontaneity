@@ -1,0 +1,324 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-heatmap-0: var(--heatmap-0);
+  --color-heatmap-1: var(--heatmap-1);
+  --color-heatmap-2: var(--heatmap-2);
+  --color-heatmap-3: var(--heatmap-3);
+  --color-heatmap-4: var(--heatmap-4);
+  --color-heatmap-5: var(--heatmap-5);
+  --color-heatmap-6: var(--heatmap-6);
+  --color-app-shell: var(--app-shell-background);
+  --color-app-sidebar: var(--app-sidebar-background);
+  --color-app-content: var(--app-content-background);
+  --color-app-panel: var(--app-panel-background);
+  --color-app-panel-muted: var(--app-panel-muted-background);
+  --color-app-panel-accent: var(--app-panel-accent-background);
+  --color-app-border-strong: var(--app-border-strong);
+  --color-tooltip-background: var(--tooltip-background);
+  --color-tooltip-foreground: var(--tooltip-foreground);
+  --color-status-info: var(--status-info);
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-danger: var(--status-danger);
+}
+
+:root {
+  --radius: 0.625rem;
+  --app-font-family: ui-sans-serif, system-ui, sans-serif;
+  --app-font-size-root: 16px;
+  --theme-primary: #f0f0f0;
+  --theme-secondary: #d9d9d9;
+  --theme-accent: #5e5e5e;
+  --app-shell-background: #eaeaea;
+  --app-sidebar-background: #dadada;
+  --app-content-background: #f0f0f0;
+  --app-panel-background: #ebebeb;
+  --app-panel-muted-background: #ececec;
+  --app-panel-accent-background: #e2e2e2;
+  --app-border-strong: #bbbbbb;
+  --background: var(--app-content-background);
+  --foreground: #242424;
+  --card: #f0f0f0;
+  --card-foreground: #242424;
+  --popover: #f0f0f0;
+  --popover-foreground: #242424;
+  --primary: var(--theme-accent);
+  --primary-foreground: #fafafa;
+  --secondary: var(--app-panel-muted-background);
+  --secondary-foreground: #242424;
+  --muted: var(--app-panel-muted-background);
+  --muted-foreground: #666666;
+  --accent: var(--app-panel-accent-background);
+  --accent-foreground: #111111;
+  --destructive: #555555;
+  --border: rgba(187, 187, 187, 0.68);
+  --input: #f0f0f0;
+  --ring: rgba(94, 94, 94, 0.48);
+  --chart-1: var(--theme-accent);
+  --chart-2: #858585;
+  --chart-3: #b3b3b3;
+  --chart-4: #a0a0a0;
+  --chart-5: #848484;
+  --sidebar: var(--app-sidebar-background);
+  --sidebar-foreground: #242424;
+  --sidebar-primary: var(--theme-accent);
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: var(--app-panel-accent-background);
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: rgba(187, 187, 187, 0.72);
+  --sidebar-ring: rgba(94, 94, 94, 0.54);
+  --tooltip-background: #171717;
+  --tooltip-foreground: #fafafa;
+  --status-info: var(--theme-accent);
+  --status-success: #8d8d8d;
+  --status-warning: #b0b0b0;
+  --status-danger: #555555;
+  --heatmap-0: #d1d1d1;
+  --heatmap-1: #c3c3c3;
+  --heatmap-2: #afafaf;
+  --heatmap-3: #9c9c9c;
+  --heatmap-4: #888888;
+  --heatmap-5: #777777;
+  --heatmap-6: #696969;
+}
+
+.dark {
+  --theme-primary: #141414;
+  --theme-secondary: #232323;
+  --theme-accent: #b0b0b0;
+  --app-shell-background: #141414;
+  --app-sidebar-background: #202020;
+  --app-content-background: #161616;
+  --app-panel-background: #212121;
+  --app-panel-muted-background: #191919;
+  --app-panel-accent-background: #4a4a4a;
+  --app-border-strong: #4d4d4d;
+  --background: var(--app-content-background);
+  --foreground: #ededed;
+  --card: #2a2a2a;
+  --card-foreground: #ededed;
+  --popover: #2a2a2a;
+  --popover-foreground: #ededed;
+  --primary: var(--theme-accent);
+  --primary-foreground: #111111;
+  --secondary: var(--app-panel-muted-background);
+  --secondary-foreground: #ededed;
+  --muted: var(--app-panel-muted-background);
+  --muted-foreground: #a3a3a3;
+  --accent: var(--app-panel-accent-background);
+  --accent-foreground: #fafafa;
+  --destructive: #8a8a8a;
+  --border: rgba(77, 77, 77, 0.72);
+  --input: #2a2a2a;
+  --ring: rgba(176, 176, 176, 0.48);
+  --chart-1: var(--theme-accent);
+  --chart-2: #838383;
+  --chart-3: #565656;
+  --chart-4: #646464;
+  --chart-5: #878787;
+  --sidebar: var(--app-sidebar-background);
+  --sidebar-foreground: #ededed;
+  --sidebar-primary: var(--theme-accent);
+  --sidebar-primary-foreground: #111111;
+  --sidebar-accent: var(--app-panel-accent-background);
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: rgba(77, 77, 77, 0.78);
+  --sidebar-ring: rgba(176, 176, 176, 0.54);
+  --tooltip-background: #f5f5f5;
+  --tooltip-foreground: #111111;
+  --status-info: var(--theme-accent);
+  --status-success: #949494;
+  --status-warning: #7b7b7b;
+  --status-danger: #8a8a8a;
+  --heatmap-0: #272727;
+  --heatmap-1: #333333;
+  --heatmap-2: #434343;
+  --heatmap-3: #565656;
+  --heatmap-4: #6a6a6a;
+  --heatmap-5: #7e7e7e;
+  --heatmap-6: #949494;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    font-size: var(--app-font-size-root);
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--app-font-family);
+  }
+}
+
+/* prompt-kit loader keyframe animations */
+@keyframes typing {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-dots {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.6);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes text-blink {
+  0%,
+  100% {
+    color: var(--primary);
+  }
+  50% {
+    color: var(--muted-foreground);
+  }
+}
+
+@keyframes bounce-dots {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes thin-pulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 150% center;
+  }
+  100% {
+    background-position: -150% center;
+  }
+}
+
+@keyframes wave-bars {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(0.6);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -200% 50%;
+  }
+}
+
+@keyframes spinner-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
