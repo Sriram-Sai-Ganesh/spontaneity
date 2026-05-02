@@ -24,7 +24,6 @@ Thumbs.db
 .claude/settings.local.json
 CLAUDE.local.md
 node_modules
-convex/_generated/*
 
 # Test artifacts
 playwright-report/
